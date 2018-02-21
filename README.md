@@ -1,24 +1,9 @@
-# README
+# Warm Lake Planning
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Every year my family spends 10 days in the mountains. We all share in meals and eat together as one. Having a meal sign up as well as figuring out how many people to cook for can be tricky.
 
-Things you may want to cover:
+We've tried Google Sheets, and Google Forms which worked well enough, but wasn't perfect.
 
-* Ruby version
+Hopefully this app makes things easier.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Rails version 5.1.5
