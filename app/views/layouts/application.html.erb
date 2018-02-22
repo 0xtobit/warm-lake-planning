@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WarmLakePlanning</title>
+    <title>Warm Lake Planning</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application' %>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/tachyons/css/tachyons.min.css">
   </head>
 
-  <body>
-    <%= yield %>
+  <body class='w-100 center' >
+    <section class='pv2 ph3 ph4-m ph6-l'>
+      <%= yield %>
+    </section>
   </body>
 </html>
