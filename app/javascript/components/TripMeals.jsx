@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import Day from "./Day"
 
-class Trip extends React.Component {
+class TripMeals extends React.Component {
   render () {
     var days = this.props.days.map( (day) =>
       <Day key={day.date} {...day} />
@@ -15,4 +15,4 @@ class Trip extends React.Component {
   }
 }
 
-export default Trip
+export default TripMeals
