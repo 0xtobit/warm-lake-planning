@@ -2,14 +2,20 @@
   "name": "warm-lake-planning",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.2.2",
+    "@rails/webpacker": "^3.4.3",
     "babel-preset-react": "^6.24.1",
-    "prop-types": "^15.6.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react_ujs": "^2.4.4"
+    "moment": "^2.22.1",
+    "momentjs": "^2.0.0",
+    "npm": "^5.8.0",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-emojione": "^5.0.0",
+    "react_ujs": "^2.4.4",
+    "webpack-cli": "^2.0.14",
+    "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.11.1"
+    "webpack-dev-server": "2.11.1"
   }
 }

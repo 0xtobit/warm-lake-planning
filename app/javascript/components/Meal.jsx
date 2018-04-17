@@ -1,13 +1,14 @@
 import React from "react"
 import PropTypes from "prop-types"
+import {emojify} from 'react-emojione'
 
 class Meal extends React.Component {
   render () {
     if (this.props.meal === 'breakfast') {
-      var meal_icon = <i className='fa fa-sun ph2'/>
+      var meal_icon = <span className='ph2'>{emojify(':cooking:', {output: 'unicode'})}</span>
       var border_class = 'bt br bl pa1 ph1'
     } else {
-      var meal_icon = <i className='fa fa-moon ph2'/>
+      var meal_icon = <span className='ph2'>{emojify(':cut_of_meat:', {output: 'unicode'})}</span>
       var border_class = 'ba pa1 ph1'
     };
 

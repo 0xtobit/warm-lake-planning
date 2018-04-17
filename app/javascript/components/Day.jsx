@@ -15,4 +15,5 @@ class Day extends React.Component {
     );
   }
 }
+
 export default Day

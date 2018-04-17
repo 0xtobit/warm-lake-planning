@@ -7,3 +7,22 @@ We've tried Google Sheets, and Google Forms which worked well enough, but wasn't
 Hopefully this app makes things easier.
 
 * Rails version 5.1.5
+
+## Models
+Trip
+- `first_day`
+- `num_days`
+
+Attendance
+- `num_attendees`
+- `days`
+- `first_day`
+- `last_day`
+- `party_name`
+
+Meal
+- `day_number`
+- `trip_id`
+- `type` [breakfast, lunch?, dinner]
+- `host`
+- `food`
