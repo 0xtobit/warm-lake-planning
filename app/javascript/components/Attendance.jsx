@@ -19,14 +19,16 @@ class Attendance extends React.Component {
   handleMealClick (i, meal, event) {
     var newSelected = JSON.parse(JSON.stringify(this.state.selected.slice()))
     newSelected[i][meal] = !newSelected[i][meal]
-    this.setState({selected: newSelected})
+    console.log(newSelected.find((x) => {x.includes(true)}) !== undefined)
+    this.setState({selected: newSelected, selectionError: newSelected.find((x) => {x.includes(true)}) !== undefined})
   }
 
   handleClick (i, event) {
     // TODO: handle shift click to do range
     var newSelected = this.state.selected.slice()
     newSelected[i] = Array(3).fill(newSelected[i].indexOf(true) === -1)
-    this.setState({selected: newSelected, selectionError: false})
+    console.log(newSelected.find((x) => {x.includes(true)}) !== undefined)
+    this.setState({selected: newSelected, selectionError: newSelected.find((x) => {x.includes(true)}) !== undefined})
   }
 
   handleChange (e) {
@@ -35,27 +37,24 @@ class Attendance extends React.Component {
 
   handleSubmit (e) {
     e.preventDefault()
-    if (this.state.selected.find((x) => {x.includes(true)})) {
-      this.setState({selectionError: false})
-      fetch('/attendances', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'X-Requested-With': 'XMLHttpRequest',
-          'X-CSRF-Token': this.props.csrf_token,
-        },
-        body: JSON.stringify({
-          selected: this.state.selected,
-          party_name: this.state.partyName,
-          attendees: this.state.attendees,
-        }),
-        credentials: 'same-origin'
-      })
-    }
-    else {
-      this.setState({selectionError: true})
-    }
+    // If no trues are set in the selected matrix
+    fetch('/attendances', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest',
+        'X-CSRF-Token': this.props.csrf_token,
+      },
+      body: JSON.stringify({
+        selected: this.state.selected,
+        party_name: this.state.partyName,
+        attendees: this.state.attendees,
+      }),
+      credentials: 'same-origin'
+    }).then ( (response) => {
+      console.log(response)
+    })
   }
 
   render () {
@@ -76,7 +75,8 @@ class Attendance extends React.Component {
           <div className='flex flex-wrap'>
             {mealSelectors}
           </div>
-          <input type='submit' className='f6 link dim br-pill ph3 pv2 mb2 dib white bg-navy' value='Submit' />
+          {!this.state.selectionError &&
+          <input type='submit' className='f6 link dim br-pill ph3 pv2 mb2 dib white bg-navy' value='Submit' />}
         </form>
       </ErrorBoundary>
     );
