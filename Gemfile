@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 
+gem 'pg'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.5'
 # Use Puma as the app server
@@ -42,7 +43,6 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
 
-  gem 'pg'
   gem 'rubocop', require: false
   gem 'faker'
   gem 'minitest-rails'

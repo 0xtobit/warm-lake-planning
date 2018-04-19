@@ -1,6 +1,7 @@
 import React from "react"
 import PropTypes from "prop-types"
 import MealSelector from "./MealSelector"
+import ErrorBoundary from "./ErrorBoundary"
 import 'whatwg-fetch'
 import moment from 'moment'
 
@@ -25,7 +26,7 @@ class Attendance extends React.Component {
     // TODO: handle shift click to do range
     var newSelected = this.state.selected.slice()
     newSelected[i] = Array(3).fill(newSelected[i].indexOf(true) === -1)
-    this.setState({selected: newSelected})
+    this.setState({selected: newSelected, selectionError: false})
   }
 
   handleChange (e) {
@@ -33,23 +34,28 @@ class Attendance extends React.Component {
   }
 
   handleSubmit (e) {
-    console.log(this.state)
-    fetch('/attendances', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-        'X-CSRF-Token': this.props.csrf_token,
-      },
-      body: JSON.stringify({
-        selected: this.state.selected,
-        party_name: this.state.partyName,
-        attendees: this.state.attendees,
-      }),
-      credentials: 'same-origin'
-    })
     e.preventDefault()
+    if (this.state.selected.find((x) => {x.includes(true)})) {
+      this.setState({selectionError: false})
+      fetch('/attendances', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+          'X-CSRF-Token': this.props.csrf_token,
+        },
+        body: JSON.stringify({
+          selected: this.state.selected,
+          party_name: this.state.partyName,
+          attendees: this.state.attendees,
+        }),
+        credentials: 'same-origin'
+      })
+    }
+    else {
+      this.setState({selectionError: true})
+    }
   }
 
   render () {
@@ -58,18 +64,21 @@ class Attendance extends React.Component {
       mealSelectors.push(<MealSelector key={i} day={moment(this.props.first_day, 'MMDDYYYY').add(i, 'days').format('ddd, MMM Do')} selected={this.state.selected[i]} mealClick={this.handleMealClick.bind(this, i)} bigClick={this.handleClick.bind(this, i)} />)
     }
     return (
-      <form>
-        <div className="measure">
-          <label className="f6 b db mb2">Name of Party</label>
-          <input name='partyName' value={this.state.partyName} className="input-reset ba b--black-20 pa2 mb2 db" type="text" aria-describedby="party-name-desc" onChange={this.handleChange.bind(this)} required={true} />
-          <label className="f6 b db mb2"> Number of Attendees</label>
-          <input name='attendees' type='number' value={this.state.attendees} className="input-reset ba b--black-20 pa2 mb2 db" aria-describedby="attendees-desc" onChange={this.handleChange.bind(this)} required={true} />
-        </div>
-        <div className='flex flex-wrap'>
-          {mealSelectors}
-        </div>
-        <input type='submit' className='f6 link dim br-pill ph3 pv2 mb2 dib white bg-navy' href='#' onClick={this.handleSubmit.bind(this)} value='Submit' />
-      </form>
+      <ErrorBoundary>
+        <form ref={form => this.formEl = form} onSubmit={this.handleSubmit.bind(this)}>
+          <div className="measure">
+            <label className="f6 b db mb2">Name of Party</label>
+            <input name='partyName' value={this.state.partyName} className="input-reset ba b--black-20 pa2 mb2 db" type="text" aria-describedby="party-name-desc" onChange={this.handleChange.bind(this)} required={true} />
+            <label className="f6 b db mb2"> Number of Attendees</label>
+            <input name='attendees' type='number' value={this.state.attendees} className="input-reset ba b--black-20 pa2 mb2 db" aria-describedby="attendees-desc" onChange={this.handleChange.bind(this)} required={true} />
+          </div>
+         {this.state.selectionError && <h2 className='red'>Please select at least one day or meal to attend</h2>}
+          <div className='flex flex-wrap'>
+            {mealSelectors}
+          </div>
+          <input type='submit' className='f6 link dim br-pill ph3 pv2 mb2 dib white bg-navy' value='Submit' />
+        </form>
+      </ErrorBoundary>
     );
   }
 }
