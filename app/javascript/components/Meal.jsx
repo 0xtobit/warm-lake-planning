@@ -13,7 +13,7 @@ class Meal extends React.Component {
     };
 
     if (this.props.open) {
-      var menu = <a href={'meals/sign_up?day?=' + String(this.props.day) } className='i'>Sign up for this meal!</a>
+      var menu = <a href={this.props.link} className='i'>Sign up for this meal!</a>
     } else {
       var menu = this.props.menu
       var host = 'by ' + this.props.host

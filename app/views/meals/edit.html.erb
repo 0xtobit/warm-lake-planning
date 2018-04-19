@@ -1,0 +1,15 @@
+Meal sign up for <%= @meal.name.titleize %> on <%= (@meal.trip.first_day + @meal.day_index.days).strftime("%A, %B %-d") %>
+<% if @meal.errors.any? %>
+  <% @meal.errors.full_messages.each do |error| %>
+    <li class='bg-light-red br2 pa2'><%= error %></li>
+  <% end %>
+<% end %>
+<%= form_tag(@meal, method: :patch) do %>
+  <%= label_tag(:host, "Host:") %>
+  <%= text_field_tag(:host, @meal.host, required: true, placeholder: "Who's cooking?") %>
+
+  <%= label_tag(:menu, "Menu:") %>
+  <%= text_field_tag(:menu, @meal.menu, required: true, placeholder: 'What are you cooking?') %>
+
+  <%= submit_tag("Sign Up") %>
+<% end %>

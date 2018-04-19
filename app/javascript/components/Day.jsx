@@ -9,8 +9,8 @@ class Day extends React.Component {
         <div className='bt br bl pa1'>
           {this.props.date}
         </div>
-        <Meal meal='breakfast' menu={this.props.breakfast} attendance={this.props.breakfast_attendance} host={this.props.breakfast_host} open={this.props.breakfast_open} />
-        <Meal meal='dinner' menu={this.props.dinner} attendance={this.props.dinner_attendance} host={this.props.dinner_host} open={this.props.dinner_open} />
+        <Meal meal='breakfast' menu={this.props.breakfast} attendance={this.props.breakfast_attendance} host={this.props.breakfast_host} link={this.props.breakfast_link} open={this.props.breakfast_open} />
+        <Meal meal='dinner' menu={this.props.dinner} attendance={this.props.dinner_attendance} host={this.props.dinner_host} link={this.props.dinner_link} open={this.props.dinner_open} />
       </div>
     );
   }

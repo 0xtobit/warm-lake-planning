@@ -1,4 +1,7 @@
 class Attendance < ApplicationRecord
+  validates :attendees, numericality: true, presence: true
+  validates :party_name, presence: true
+
   validate :not_all_zero
 
   private
