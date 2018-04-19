@@ -9,10 +9,10 @@ class TripController < ApplicationController
         date: (trip.first_day + day_index.days).strftime('%a %b %d'),
         breakfast: breakfast&.menu,
         breakfast_host: breakfast&.host,
-        breakfast_attendance: Attendance.pluck("day#{day_index}").transpose[0].map(&:to_i).sum,
+        breakfast_attendance: Attendance.pluck("day#{day_index}").transpose[0]&.map(&:to_i)&.sum || 0,
         dinner: dinner&.menu,
         dinner_host: dinner&.host,
-        dinner_attendance: Attendance.pluck("day#{day_index}").transpose[2].map(&:to_i).sum,
+        dinner_attendance: Attendance.pluck("day#{day_index}").transpose[2]&.map(&:to_i)&.sum || 0,
         breakfast_open: breakfast.present?,
         dinner_open: dinner.present?
       }
