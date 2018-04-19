@@ -2,13 +2,14 @@ import React from "react"
 import PropTypes from "prop-types"
 import MealSelector from "./MealSelector"
 import ErrorBoundary from "./ErrorBoundary"
+import FetchResponse from "./FetchResponse"
 import 'whatwg-fetch'
 import moment from 'moment'
 
 class Attendance extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {selected: Array(this.props.days).fill([false, false, false])}
+    this.state = {selected: Array(this.props.days).fill([false, false, false]), attendees: '', partyName: ''}
 
     this.handleChange.bind(this)
     this.handleMealClick.bind(this)
@@ -50,8 +51,17 @@ class Attendance extends React.Component {
         attendees: this.state.attendees,
       }),
       credentials: 'same-origin'
-    }).then ( (response) => {
-      console.log(response)
+    }).then ((response) => {
+      this.setState({response_status: response.status})
+      return response.json()
+    }).then ((data) => {
+      if (this.state.response_status === 201) {
+        this.setState({selected: Array(this.props.days).fill([false, false, false]), attendees: '', partyName: '', success: true, message: data.message})
+      } else if (this.state.response_status === 500) {
+        this.setState({success: false, message: `Error: ${data.message} (${this.state.response_status}) Go annoy Tobit`})
+      } else {
+        this.setState({success: false, message: `Error: ${data.message} (${this.state.response_status})`})
+      }
     })
   }
 
@@ -74,7 +84,8 @@ class Attendance extends React.Component {
           </div>
           {!this.state.selectionError &&
           <input type='submit' className='f6 link dim br-pill ph3 pv2 mb2 dib white bg-navy' value='Submit' />}
-         {this.state.selectionError && <h2 className='red'>Please select at least one day or meal to attend</h2>}
+          {this.state.selectionError && <h2 className='red'>Please select at least one day or meal to attend</h2>}
+          {this.state.success !== undefined && <FetchResponse success={this.state.success} message={this.state.message} />}
         </form>
       </ErrorBoundary>
     );
