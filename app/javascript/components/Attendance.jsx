@@ -19,16 +19,14 @@ class Attendance extends React.Component {
   handleMealClick (i, meal, event) {
     var newSelected = JSON.parse(JSON.stringify(this.state.selected.slice()))
     newSelected[i][meal] = !newSelected[i][meal]
-    console.log(newSelected.find((x) => {x.includes(true)}) !== undefined)
-    this.setState({selected: newSelected, selectionError: newSelected.find((x) => {x.includes(true)}) !== undefined})
+    this.setState({selected: newSelected, selectionError: newSelected.find((x) => {return x.includes(true)}) === undefined})
   }
 
   handleClick (i, event) {
     // TODO: handle shift click to do range
     var newSelected = this.state.selected.slice()
     newSelected[i] = Array(3).fill(newSelected[i].indexOf(true) === -1)
-    console.log(newSelected.find((x) => {x.includes(true)}) !== undefined)
-    this.setState({selected: newSelected, selectionError: newSelected.find((x) => {x.includes(true)}) !== undefined})
+    this.setState({selected: newSelected, selectionError: newSelected.find((x) => {return x.includes(true)}) === undefined})
   }
 
   handleChange (e) {
@@ -71,12 +69,12 @@ class Attendance extends React.Component {
             <label className="f6 b db mb2"> Number of Attendees</label>
             <input name='attendees' type='number' value={this.state.attendees} className="input-reset ba b--black-20 pa2 mb2 db" aria-describedby="attendees-desc" onChange={this.handleChange.bind(this)} required={true} />
           </div>
-         {this.state.selectionError && <h2 className='red'>Please select at least one day or meal to attend</h2>}
           <div className='flex flex-wrap'>
             {mealSelectors}
           </div>
           {!this.state.selectionError &&
           <input type='submit' className='f6 link dim br-pill ph3 pv2 mb2 dib white bg-navy' value='Submit' />}
+         {this.state.selectionError && <h2 className='red'>Please select at least one day or meal to attend</h2>}
         </form>
       </ErrorBoundary>
     );
