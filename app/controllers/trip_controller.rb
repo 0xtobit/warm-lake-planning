@@ -1,7 +1,7 @@
 class TripController < ApplicationController
   def show
     trip = Trip.find(1)
-    @days = (0..trip.num_days).map do |day_index|
+    @days = (0..trip.num_days-1).map do |day_index|
       breakfast = Meal.breakfast.find_by(trip: trip)
       dinner = Meal.dinner.find_by(trip: trip)
       {
@@ -9,13 +9,15 @@ class TripController < ApplicationController
         date: (trip.first_day + day_index.days).strftime('%a %b %d'),
         breakfast: breakfast&.menu,
         breakfast_host: breakfast&.host,
-        breakfast_attendance: nil,
+        breakfast_attendance: Attendance.pluck("day#{day_index}").transpose[0].map(&:to_i).sum,
         dinner: dinner&.menu,
         dinner_host: dinner&.host,
-        dinner_attendance: 20, # FIXME
+        dinner_attendance: Attendance.pluck("day#{day_index}").transpose[2].map(&:to_i).sum,
+        breakfast_open: breakfast.present?,
+        dinner_open: dinner.present?
       }
     end
-    @days =
+    @dayz =
       [
         {
           day: 0,
@@ -70,9 +72,5 @@ class TripController < ApplicationController
           dinner_attendance: 20,
         },
     ]
-  end
-
-  def create
-    puts params
   end
 end

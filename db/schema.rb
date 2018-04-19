@@ -10,7 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180318201031) do
+ActiveRecord::Schema.define(version: 20180418235956) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "attendances", force: :cascade do |t|
+    t.integer "attendees"
+    t.string "party_name"
+    t.string "day0", default: [], array: true
+    t.string "day1", default: [], array: true
+    t.string "day2", default: [], array: true
+    t.string "day3", default: [], array: true
+    t.string "day4", default: [], array: true
+    t.string "day5", default: [], array: true
+    t.string "day6", default: [], array: true
+    t.string "day7", default: [], array: true
+    t.string "day8", default: [], array: true
+    t.string "day9", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "meals", force: :cascade do |t|
     t.integer "trip_id"
