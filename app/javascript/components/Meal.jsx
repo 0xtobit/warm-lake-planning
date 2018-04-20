@@ -13,14 +13,17 @@ class Meal extends React.Component {
     };
 
     if (this.props.open) {
-      var menu = <a href={this.props.link} className='i'>Sign up for this meal!</a>
+      var menu = (
+        <a href={this.props.link} className='dim ba br2 bg-dark-gray white ph1 f5 no-underline'>
+          Claim meal!
+        </a>)
     } else {
       var menu = this.props.menu
       var host = 'by ' + this.props.host
     }
 
     return (
-      <div className=''>
+      <div>
         <div className={border_class}>
           <div className='pa1 f5'>
             {meal_icon}
@@ -33,6 +36,7 @@ class Meal extends React.Component {
             <code>{this.props.attendance}</code>
             <div className='i fr'>
               {host}
+              {this.props.open && '' /* FIXME: edit link */ }
             </div>
           </div>
         </div>
