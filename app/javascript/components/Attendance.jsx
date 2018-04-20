@@ -73,17 +73,17 @@ class Attendance extends React.Component {
     return (
       <ErrorBoundary>
         <form ref={form => this.formEl = form} onSubmit={this.handleSubmit.bind(this)}>
-          <div className="measure">
-            <label className="f6 b db mb2">Name of Party</label>
-            <input name='partyName' value={this.state.partyName} className="input-reset ba b--black-20 pa2 mb2 db" type="text" aria-describedby="party-name-desc" onChange={this.handleChange.bind(this)} required={true} />
-            <label className="f6 b db mb2"> Number of Attendees</label>
-            <input name='attendees' type='number' value={this.state.attendees} className="input-reset ba b--black-20 pa2 mb2 db" aria-describedby="attendees-desc" onChange={this.handleChange.bind(this)} required={true} />
+          <div className='measure'>
+            <label className='f6 b db mb2'>Name of Party</label>
+            <input name='partyName' value={this.state.partyName} className='input-reset ba b--black-20 pa2 mb2 db' type='text' aria-describedby='party-name-desc' onChange={this.handleChange.bind(this)} required={true} />
+            <label className='f6 b db mb2'> Number of Attendees</label>
+            <input name='attendees' type='number' value={this.state.attendees} className='input-reset ba b--black-20 pa2 mb2 db' aria-describedby='attendees-desc' onChange={this.handleChange.bind(this)} required={true} />
           </div>
           <div className='flex flex-wrap'>
             {mealSelectors}
           </div>
           {!this.state.selectionError &&
-          <input type='submit' className='f6 link dim br-pill ph3 pv2 mb2 dib white bg-navy' value='Submit' />}
+          <input type='submit' className='f6 link dim br-pill ph3 pv2 mb2 dib white bg-dark-gray' value='Submit' />}
           {this.state.selectionError && <h2 className='red'>Please select at least one day or meal to attend</h2>}
           {this.state.success !== undefined && <FetchResponse success={this.state.success} message={this.state.message} />}
         </form>

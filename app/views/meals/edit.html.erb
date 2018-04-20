@@ -1,15 +1,23 @@
-Meal sign up for <%= @meal.name.titleize %> on <%= (@meal.trip.first_day + @meal.day_index.days).strftime("%A, %B %-d") %>
-<% if @meal.errors.any? %>
-  <% @meal.errors.full_messages.each do |error| %>
-    <li class='bg-light-red br2 pa2'><%= error %></li>
-  <% end %>
-<% end %>
-<%= form_tag(@meal, method: :patch) do %>
-  <%= label_tag(:host, "Host:") %>
-  <%= text_field_tag(:host, @meal.host, required: true, placeholder: "Who's cooking?") %>
+<div class='pa4'>
+  <span class='f3'>
+    <%= @meal.name.titleize %> on <%= (@meal.trip.first_day + @meal.day_index.days).strftime("%A, %B %-d") %>
+  </span>
+  <div class='pt3'>
+    <% if @meal.errors.any? %>
+      <% @meal.errors.full_messages.each do |error| %>
+        <li class='bg-light-red br2 pa2'><%= error %></li>
+      <% end %>
+    <% end %>
+    <%= form_tag(@meal, method: :patch) do %>
+      <%= label_tag(:host, 'Host:', class: 'f6 b db mb2') %>
+      <%= text_field_tag(:host, @meal.host, required: true, placeholder: "Who's cooking?", class: 'input-reset ba b--black-20 pa2 mb2 db') %>
 
-  <%= label_tag(:menu, "Menu:") %>
-  <%= text_field_tag(:menu, @meal.menu, required: true, placeholder: 'What are you cooking?') %>
+      <%= label_tag(:menu, 'Menu:', class: 'f6 b db mb2') %>
+      <%= text_field_tag(:menu, @meal.menu, required: true, placeholder: 'What are you cooking?', class: 'input-reset ba b--black-20 pa2 db') %>
 
-  <%= submit_tag("Sign Up") %>
-<% end %>
+      <div class='pv3'>
+        <%= submit_tag('Sign Up', class: 'f6 link dim br-pill ph3 pv2 mb2 dib white bg-dark-gray') %>
+      </div>
+    <% end %>
+  </div>
+</div>

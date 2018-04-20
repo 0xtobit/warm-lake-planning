@@ -1,3 +1,5 @@
 <%= react_component('TripMeals', days: @days) %>
 
-<%= react_component('Attendance', { first_day: '07192018', days: 10, csrf_token: form_authenticity_token }) %>
+<div class='pv4'>
+  <%= link_to "Choose Meals You'll Be Eating", new_attendance_path, class: 'f4 link dim br-pill ph3 pv2 mb2 dib white bg-dark-gray' %>
+</div>
