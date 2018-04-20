@@ -18,14 +18,14 @@ class Meal extends React.Component {
           Claim meal!
         </a>)
     } else {
-      var menu = this.props.menu
+      var menu = <span className='f6'>{this.props.menu}</span>
       var host = 'by ' + this.props.host
     }
 
     return (
       <div>
         <div className={border_class}>
-          <div className='pa1 f5'>
+          <div className='pa1 f5 nowrap overflow-x-auto'>
             {meal_icon}
             <span onClick={this.props.handleClick} >
               {menu}

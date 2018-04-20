@@ -74,11 +74,14 @@ class Attendance extends React.Component {
       <ErrorBoundary>
         <form ref={form => this.formEl = form} onSubmit={this.handleSubmit.bind(this)}>
           <div className='measure'>
-            <label className='f6 b db mb2'>Name of Party</label>
+            <label className='f6 b db mb2'>Name of Party:</label>
             <input name='partyName' value={this.state.partyName} className='input-reset ba b--black-20 pa2 mb2 db' type='text' aria-describedby='party-name-desc' onChange={this.handleChange.bind(this)} required={true} />
-            <label className='f6 b db mb2'> Number of Attendees</label>
+            <label className='f6 b db mb2'> Number of Attendees:</label>
             <input name='attendees' type='number' value={this.state.attendees} className='input-reset ba b--black-20 pa2 mb2 db' aria-describedby='attendees-desc' onChange={this.handleChange.bind(this)} required={true} />
           </div>
+          <p className='b f6 db mb2 pt2'>
+            Select the days and/or meals you will be present for:
+          </p>
           <div className='flex flex-wrap'>
             {mealSelectors}
           </div>

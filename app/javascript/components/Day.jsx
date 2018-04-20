@@ -5,7 +5,7 @@ import Meal from "./Meal"
 class Day extends React.Component {
   render () {
     return (
-      <div className='w-30 tl pa1 f7'>
+      <div className='w-25 tl pa1 f7'>
         <div className='bt br bl pa1'>
           {this.props.date}
         </div>
