@@ -86,7 +86,9 @@ class Attendance extends React.Component {
             {mealSelectors}
           </div>
           {!this.state.selectionError &&
-          <input type='submit' className='f6 link dim br-pill ph3 pv2 mb2 dib white bg-dark-gray' value='Submit' />}
+            <div className='pv4'>
+              <input type='submit' className='f4 link dim br-pill ph3 pv2 mb2 dib white bg-dark-gray' value='Submit' />
+            </div>}
           {this.state.selectionError && <h2 className='red'>Please select at least one day or meal to attend</h2>}
           {this.state.success !== undefined && <FetchResponse success={this.state.success} message={this.state.message} />}
         </form>
