@@ -27,9 +27,7 @@ class Meal extends React.Component {
         <div className={border_class}>
           <div className='pa1 f5 nowrap overflow-x-auto'>
             {meal_icon}
-            <span onClick={this.props.handleClick} >
-              {menu}
-            </span>
+            {menu}
           </div>
           <div className='pa1'>
             <i className='fa fa-users ph2'/>
