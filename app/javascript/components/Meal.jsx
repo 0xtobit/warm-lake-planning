@@ -29,13 +29,13 @@ class Meal extends React.Component {
             {meal_icon}
             {menu}
           </div>
-          <div className='pa1'>
+          <div className='pa1 nowrap overflow-x-auto'>
             <i className='fa fa-users ph2'/>
             <code>{this.props.attendance}</code>
-            <div className='i fr'>
+            <span className='pl2 i'>
               {host}
               {this.props.open && '' /* FIXME: edit link */ }
-            </div>
+            </span>
           </div>
         </div>
       </div>
