@@ -5,8 +5,8 @@ import Meal from "./Meal"
 class Day extends React.Component {
   render () {
     return (
-      <div className='w-20 tl pa1 f7'>
-        <div className='bt br bl pa1'>
+      <div className='w-20 tl pa1 f5'>
+        <div className='pa1 tc bg-dark-green white'>
           {this.props.date}
         </div>
         <Meal meal='breakfast' menu={this.props.breakfast} attendance={this.props.breakfast_attendance} host={this.props.breakfast_host} link={this.props.breakfast_link} open={this.props.breakfast_open} />

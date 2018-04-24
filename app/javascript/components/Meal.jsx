@@ -5,10 +5,10 @@ import {emojify} from 'react-emojione'
 class Meal extends React.Component {
   render () {
     if (this.props.meal === 'breakfast') {
-      var meal_icon = <span className='ph2'>{emojify(':cooking:', {output: 'unicode'})}</span>
+      var meal_icon = <span title='Breakfast' className='ph2'>{emojify(':cooking:', {output: 'unicode'})}</span>
       var border_class = 'bt br bl pa1 ph1'
     } else {
-      var meal_icon = <span className='ph2'>{emojify(':cut_of_meat:', {output: 'unicode'})}</span>
+      var meal_icon = <span title='Dinner' className='ph2'>{emojify(':cut_of_meat:', {output: 'unicode'})}</span>
       var border_class = 'ba pa1 ph1'
     };
 
@@ -23,16 +23,16 @@ class Meal extends React.Component {
     }
 
     return (
-      <div>
+      <div className='bg-washed-green'>
         <div className={border_class}>
           <div className='pa1 f5 nowrap overflow-x-auto'>
             {meal_icon}
             {menu}
           </div>
-          <div className='pa1 nowrap overflow-x-auto'>
-            <i className='fa fa-users ph2'/>
+          <div className='pa1 f5 nowrap overflow-x-auto'>
+            <i title='Attendance' className='fa fa-users ph2'/>
             <code>{this.props.attendance}</code>
-            <span className='pl2 i'>
+            <span className='pl2 f6 i'>
               {host}
               {this.props.open && '' /* FIXME: edit link */ }
             </span>

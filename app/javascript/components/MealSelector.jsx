@@ -47,13 +47,13 @@ class MealSelector extends React.Component {
             {this.props.day}
           </div>
           <div className='flex flex-box w-100 f5'>
-            <div className={`pa2 bb bl ${color0}`} onClick={this.handleClick.bind(this, 0)}>
+            <div title='Breakfast' className={`pa2 bb bl ${color0}`} onClick={this.handleClick.bind(this, 0)}>
               {emojify(':cooking:', {output: 'unicode'})}
             </div>
-            <div className={`pa2 bb bl ${color1}`} onClick={this.handleClick.bind(this, 1)}>
+            <div title='Lunch' className={`pa2 bb bl ${color1}`} onClick={this.handleClick.bind(this, 1)}>
               {emojify(':sandwich:', {output: 'unicode'})}
             </div>
-            <div className={`pa2 bb bl br ${color2}`} onClick={this.handleClick.bind(this, 2)}>
+            <div title='Dinner' className={`pa2 bb bl br ${color2}`} onClick={this.handleClick.bind(this, 2)}>
               {emojify(':cut_of_meat:', {output: 'unicode'})}
             </div>
           </div>
