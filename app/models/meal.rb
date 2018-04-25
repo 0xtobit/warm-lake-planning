@@ -6,4 +6,11 @@ class Meal < ApplicationRecord
   scope :breakfast, -> { where(name: 'breakfast') }
   scope :lunch, -> { where(name: 'lunch') }
   scope :dinner, -> { where(name: 'dinner') }
+
+  def attendees
+    meal_lookup = { breakfast: 0, lunch: 1, dinner: 2 }
+    Attendance.pluck("day#{day_index}", 'party_name').map do |a, party|
+      party if a[meal_lookup[name.to_sym]] != '0'
+    end
+  end
 end

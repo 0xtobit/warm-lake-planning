@@ -22,6 +22,15 @@ class Meal extends React.Component {
       var host = 'by ' + this.props.host
     }
 
+    var i = 0
+    if (this.props.attendees != null) {
+      var attendees = this.props.attendees.map( (attendees) =>
+        <span key={i++}>{attendees}<br /></span>
+      )
+    } else {
+      var attendees = ''
+    }
+
     return (
       <div className='bg-washed-green'>
         <div className={border_class}>
@@ -29,7 +38,10 @@ class Meal extends React.Component {
             {meal_icon}
             {menu}
           </div>
-          <div className='pa1 f5 nowrap overflow-x-auto'>
+          <div className='pa1 hide-child'>
+            <span className='dt child pl0 ml0 absolute center ba br3 white bg-dark-gray wrap w-10'>
+              <span className='ph3 pv2'>{attendees}</span>
+            </span>
             <i title='Attendance' className='fa fa-users ph2'/>
             <code>{this.props.attendance}</code>
             <span className='pl2 f6 i'>
