@@ -9,8 +9,6 @@ class Meal < ApplicationRecord
 
   def attendees
     meal_lookup = { breakfast: 0, lunch: 1, dinner: 2 }
-    Attendance.pluck("day#{day_index}", 'party_name').map do |a, party|
-      party if a[meal_lookup[name.to_sym]] != '0'
-    end
+    Attendance.pluck("day#{day_index}", 'party_name').map { |a, party| party if a[meal_lookup[name.to_sym]] != '0' }.uniq.select{ |x| !x.nil?}.join(', ')
   end
 end
