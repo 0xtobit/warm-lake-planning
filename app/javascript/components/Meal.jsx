@@ -57,7 +57,7 @@ class Meal extends React.Component {
             </span>
             <span className='pl2 f6 i'>
               {host}
-              {this.props.open && '' /* FIXME: edit link */ }
+              {!this.props.open && <a href={this.props.link} className='dim dark-gray ph1 f7 no-underline'><i className='fa fa-edit'></i></a>}
             </span>
           </div>
         </div>
