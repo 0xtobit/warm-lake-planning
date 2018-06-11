@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import Attendees from "./Attendees"
 import {emojify} from 'react-emojione'
 
 class Meal extends React.Component {
@@ -48,7 +49,7 @@ class Meal extends React.Component {
           </div>
           <div className='pa1 nowrap overflow-x-auto dark-gray'>
             {this.state.showAttendees && (<span onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)} className='pl0 ml0 absolute br3 white bg-dark-gray wrap'>
-              <span className='ph3 pv2'>{this.props.attendees}</span>
+              <Attendees attendees={this.props.attendees}/>
             </span>)}
             <span onMouseEnter={this.handleMouseEnter.bind(this)} onMouseLeave={this.handleMouseLeave.bind(this)}>
               <i title='Attendance' className='fa fa-users ph2' />
