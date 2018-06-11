@@ -9,7 +9,7 @@ class Attendees extends React.Component {
     let comma = ''
     let attendee_lines = []
     let i
-    for (i=0; i < this.props.attendees.length / 4; i++) {
+    for (i=0; i < this.props.attendees.length / 4 + 1; i++) {
       attendee_lines.push(<span key={i}>{this.props.attendees.slice(i*3, i*3+3).join(', ')}<br /></span>)
     }
 
