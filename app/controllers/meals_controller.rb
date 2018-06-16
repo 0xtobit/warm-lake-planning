@@ -3,6 +3,7 @@ class MealsController < ApplicationController
 
   def index
     trip = Trip.find(1)
+    @parties = Attendance.pluck(:party_name).uniq
     @days = (0..trip.num_days-1).map do |day_index|
       breakfast = Meal.breakfast.find_by(trip: trip, day_index: day_index)
       dinner = Meal.dinner.find_by(trip: trip, day_index: day_index)

@@ -1,5 +1,24 @@
 <%= react_component('TripMeals', days: @days) %>
 
-<div class='pv4'>
+<div class='pv2'>
   <%= link_to "Choose Meals You'll Be Eating", new_attendance_path, class: 'f4 link dim br-pill ph3 pv2 mb2 dib white bg-dark-gray' %>
+</div>
+
+<p class='pb0 f5'>Parties signed up:</p>
+<div class='flex center f6'>
+  <ul class='w-30 list'>
+    <% @parties.in_groups(3)[0].each do |party| %>
+      <li class='pv1'><%= party %></li>
+    <% end %>
+  </ul>
+  <ul class='w-30 list'>
+    <% @parties.in_groups(3)[1].each do |party| %>
+      <li class='pv1'><%= party %></li>
+    <% end %>
+  </ul>
+  <ul class='w-30 list'>
+    <% @parties.in_groups(3)[2].each do |party| %>
+      <li class='pv1'><%= party %></li>
+    <% end %>
+  </ul>
 </div>
