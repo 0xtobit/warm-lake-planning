@@ -4,18 +4,19 @@
   "dependencies": {
     "@rails/webpacker": "^3.4.3",
     "babel-preset-react": "^6.24.1",
+    "lodash": ">=4.7.11",
     "moment": "^2.22.1",
     "momentjs": "^2.0.0",
-    "npm": "^5.8.0",
+    "npm": "^6.7.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-emojione": "^5.0.0",
     "react_ujs": "^2.4.4",
-    "webpack-cli": "^2.0.14",
+    "webpack-cli": "^3.2.3",
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
-    "webpack-dev-server": "2.11.1"
+    "webpack-dev-server": "^3.1.14"
   }
 }
