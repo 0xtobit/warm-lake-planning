@@ -46,6 +46,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'faker'
   gem 'minitest-rails'
+  gem 'figaro'
 end
 
 group :development do

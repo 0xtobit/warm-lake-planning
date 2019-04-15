@@ -1,4 +1,7 @@
 class Attendance < ApplicationRecord
+  belongs_to :trip, inverse_of: :attendances
+
+  validates :trip_id, presence: true
   validates :attendees, numericality: true, presence: true
   validates :party_name, presence: true
 

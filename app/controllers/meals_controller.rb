@@ -2,8 +2,8 @@ class MealsController < ApplicationController
   before_action :set_meal, only: [:edit, :update]
 
   def index
-    trip = Trip.find(3)
-    @parties = Attendance.pluck(:party_name).uniq.sort
+    trip = Trip.find(ENV['TRIP_ID'])
+    @parties = Attendance.where(trip: trip).pluck(:party_name).uniq.sort
     @days = (0..trip.num_days-1).map do |day_index|
       breakfast = Meal.breakfast.find_by(trip: trip, day_index: day_index)
       dinner = Meal.dinner.find_by(trip: trip, day_index: day_index)
@@ -12,12 +12,12 @@ class MealsController < ApplicationController
         date: (trip.first_day + day_index.days).strftime('%a %b %d'),
         breakfast: breakfast&.menu,
         breakfast_host: breakfast&.host,
-        breakfast_attendance: Attendance.pluck("day#{day_index}").transpose[0]&.map(&:to_f)&.sum || 0,
+        breakfast_attendance: Attendance.where(trip: trip).pluck("day#{day_index}").transpose[0]&.map(&:to_f)&.sum || 0,
         breakfast_attendees: breakfast&.attendees,
         breakfast_open: breakfast&.host.nil?,
         dinner: dinner&.menu,
         dinner_host: dinner&.host,
-        dinner_attendance: Attendance.pluck("day#{day_index}").transpose[2]&.map(&:to_f)&.sum || 0,
+        dinner_attendance: Attendance.where(trip: trip).pluck("day#{day_index}").transpose[2]&.map(&:to_f)&.sum || 0,
         dinner_open: dinner&.host.nil?,
         dinner_attendees: dinner&.attendees
       }

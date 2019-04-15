@@ -4,7 +4,7 @@
   <%= link_to "Choose Meals You'll Be Eating", new_attendance_path, class: 'f4 link dim br-pill ph3 pv2 mb2 dib white bg-dark-gray' %>
 </div>
 
-<p class='pb0 f5'>Parties signed up:</p>
+<p class='pb0 f5'>Attending parties:</p>
 <div class='flex center f6'>
   <ul class='w-30 list'>
     <% @parties.in_groups(3)[0].each do |party| %>

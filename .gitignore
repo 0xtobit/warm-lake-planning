@@ -28,3 +28,6 @@ yarn-debug.log*
 .yarn-integrity
 *.swp
 *.swo
+
+# Ignore application configuration
+/config/application.yml
